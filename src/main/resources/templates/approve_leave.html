@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block>
+	</head>
+<style>
+	.no-js #loader {
+		display: none;
+	}
+	.js #loader {
+		display: block;
+		position: absolute;
+		left: 100px;
+		top: 0;
+	}
+
+	.se-pre-con {
+		position: fixed;
+		left: 0px;
+		top: 0px;
+		width: 100%;
+		height: 100%;
+		z-index: 9999;
+		background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+	}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+		<!-- START HEADER FRAGMENT -->
+
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+
+		<!-- END HEADER FRAGMENT -->
+
+		<main class="mdl-layout__content hrms-main">
+
+		<div class="mdl-grid">
+			<!-- START OF SIDEBAR -->
+			<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+			<!-- END OF SIDEBAR -->
+
+			<div class="mdl-cell mdl-cell--9-col ">
+
+				<!-- START OF CONTENT -->
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+
+						<div class="hrms-main-content-title">
+							<p>Leave Management</p>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp">
+					<div class="hrmsLeave-box-title">
+						<p>Leave Requests List</p>
+					</div>
+
+					<table
+						class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave">
+						<thead>
+							<tr>
+								<th class="mdl-data-table__cell--non-numeric">No.</th>
+								<th>Name</th>
+								<th>Time requested</th>
+								<th>Remaining time</th>
+								<th>Leave Type</th>
+								<th>Status</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr class="hrms-tbl-tr new-row-approval">
+								<td class="mdl-data-table__cell--non-numeric">1</td>
+								<td>Patrick</td>
+								<td>3 days</td>
+								<td>13 days and 5 hours</td>
+								<td>Long</td>
+								<td style="color: red;">Pending</td>
+							</tr>
+
+							<tr class="hrms-tbl-tr">
+								<td class="mdl-data-table__cell--non-numeric">2</td>
+								<td>Patrick</td>
+								<td>3 days</td>
+								<td>13 days and 5 hours</td>
+								<td>Long</td>
+								<td style="color: red;">Pending</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<!-- END OF CONTENT -->
+			</div>
+		</div>
+
+		</main>
+		<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+		</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+
+	<div class="hrms-modal hidden" id="new-leave-approval-modal">
+		<div class="hrms-modal-content new-basic-info-width">
+
+			<div class="hrms-modal-header2 ">
+
+
+				<span class="hrms-modal-title  ">Applicant name: Kabayiza
+					Claude </span> <span class="hrms-modal-leave-status ">Received on:
+					16/08/2018 14:10:37</span>
+
+
+			</div>
+			<div class="hrms-modal-leave-approval-body">
+				<div class="row">
+					<div class="col-lg-12 title-shading">Status: Pending</div>
+				</div>
+				<div class="mdl-grid text-black">
+									
+									<div class="mdl-cell mdl-cell--6-col">
+				
+										<label for="req_date">Requested date </label>
+										<input id="jdate" name="jdate" class="hrms-form-control" type="date" placeholder="16/08/2018">
+										
+										<label for="req">Employee name </label>
+										<input id="req" name="req" class="hrms-form-control" type="text" placeholder="Kabayiza Claude">
+										
+										<label for="req_time">No of days applied for </label>
+										<input id="req_time" name="req_time" class="hrms-form-control" type="text" placeholder="3 days">
+								
+									</div>
+									<div class="mdl-cell mdl-cell--6-col">
+										<label for="sdate">Leave from </label>
+										<input id="sdate" name="jdate" class="hrms-form-control" type="date" placeholder="20/08/2018">
+										
+										<label for="backup">Back up person </label>
+										<input id="backup" name="backup" class="hrms-form-control" type="text" placeholder="Amiri Mugarura">
+										
+										<label for="edate"> Leave to </label>
+										<input id="edate" name="jdate" class="hrms-form-control" type="date" placeholder="01/09/2018">
+									
+									</div>
+				</div>
+				<div class="mdl-grid text-black">
+								<div class="mdl-cell mdl-cell--12-col">
+									<label for="comment">Reason</label>
+									<textarea class="hrms-form-control-textarea" rows="5"></textarea>
+								</div>
+							
+				</div>
+			
+				<div class="row">
+					<div class="col-lg-12 title-shading">Line Manager decision</div>
+				</div>
+				<div class="mdl-grid">
+
+					<a
+						class=" mdl-button hrms-btn-round border-red text-red close-approval-modal">Cancel
+					</a>
+
+
+					<div class="mdl-layout-spacer"></div>
+					<a class=" mdl-button hrms-btn-round border-black text-black ">Reject</a>
+					<a
+						class=" mdl-button hrms-btn-round border-green approve-btn text-green">Approve</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+<div class="se-pre-con"></div>
+</html>

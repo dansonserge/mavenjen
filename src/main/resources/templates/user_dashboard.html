@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block>
+
+
+<title>HRMS-User's Dashboard</title>
+
+</head>
+<style>
+.no-js #loader {
+	display: none;
+}
+
+.js #loader {
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+		<div class="mdl-grid">
+			<!-- START OF SIDEBAR -->
+			<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+			<!-- END OF SIDEBAR -->
+			<div class="mdl-cell mdl-cell--9-col ">
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--7-col mdl-typography--text-left">
+						<div class="hrms-main-year">
+							<p>
+								Year : <select id="designation" name="designation"
+									class="hrms-form-year">
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+								</select>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-wide mdl-card mdl-shadow--2dp ">
+							<div class="mdl-card__title">
+								<label class="mdl-card__title-text" style="padding-left:30px;">Current
+									Leave days</label>
+							</div>
+							<div class="mdl-card__supporting-text leave-card">
+								<i class="material-icons"> query_builder </i> <br> <label
+									class="hrms-userdashboard-text">12</label> <br> <label
+									class="hrms-userdashboard-text">days 5 hours left</label>
+
+							</div>
+							<div class="mdl-card__actions mdl-card--border" style="text-align:center;">
+								<a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+									View activity </a>
+							</div>
+
+						</div>
+
+					</div>
+					<div class="mdl-cell mdl-cell--8-col">
+
+						<table
+							class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave hrms-userdashbord-table">
+							<thead>
+								<tr>
+									<th>Leave Type</th>
+									<th>Taken</th>
+									<th>Remaining days</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								<tr>
+									<td>Annual Leave</td>
+									<td>2 days</td>
+									<td rowspan=5>
+										<div id="user_leaves" style="width: 200px; height: 200px;"></div>
+									</td>
+								</tr>
+								<tr>
+									<td>Medical Leave</td>
+									<td>1 day</td>
+								</tr>
+								<tr>
+									<td>Study Leave</td>
+									<td></td>
+								</tr>
+								<tr>
+									<td>Maternity Leave</td>
+									<td>12 days</td>
+								</tr>
+								<tr>
+									<td>Other leave</td>
+									<td>3 days</td>
+								</tr>
+								
+							</tbody>
+
+
+						</table>
+					</div>
+				</div>
+
+
+
+				<div class="mdl-grid">
+
+					<table
+						class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave hrms-userdashbord-table "
+						style="width: 100%">
+						<thead>
+							<tr>
+
+								<th>Amount Requested</th>
+								<th>Request Date</th>
+								<th class="dl-data-table__cell--non-numeric">Payment Status</th>
+								<th class="dl-data-table__cell--non-numeric">Approval
+									Status</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<tr>
+								<td rowspan="3">1,000,000</td>
+								<td rowspan="3">10/08/2018</td>
+								<td class="mdl-data-table__cell--non-numeric" rowspan=3>In
+									Progress <i class="material-icons userdashIcon"> visibility
+								</i>
+								</td>
+								<td class="mdl-data-table__cell--non-numeric ">CHRO <label
+									class="text-green"> Approved </label> <i
+									class="material-icons userdashIcon">done</i></td>
+							</tr>
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric ">CFO <label
+									class="text-green"> Approved </label> <i
+									class="material-icons userdashIcon">done</i></td>
+							</tr>
+
+							<tr>
+								<td class="mdl-data-table__cell--non-numeric ">CFO <label
+									class="text-red"> Pending </label></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+			</div>
+			<!-- END OF CONTENT -->
+		</div>
+
+		</main>
+		<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+		</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+
+	<script>
+	
+		
+			//LEAVE SUMMARY CHART
+			google.charts.load('current', {
+				'packages': ['corechart']
+			});
+			google.charts.setOnLoadCallback(drawChart);
+
+			function drawChart() {
+
+				var data = google.visualization.arrayToDataTable([
+					['Leave', 'days per year'], ['remaining days', 9],
+					['taken days', 12],]);
+
+				var options = {
+					pieHole: 0.5,
+					pieSliceTextStyle: {
+						color: 'black',
+					},
+
+					legend: 'none'
+				};
+
+				var chart = new google.visualization.PieChart(document
+					.getElementById('user_leaves'));
+				chart.draw(data, options);
+			}
+
+	
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

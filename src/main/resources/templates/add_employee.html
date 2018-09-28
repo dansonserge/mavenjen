@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+</head>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+.mdl-spinner {
+	display:none;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+		<!-- START HEADER FRAGMENT -->
+
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+
+		<!-- END HEADER FRAGMENT -->
+
+		<main class="mdl-layout__content hrms-main">
+
+			<div class="mdl-grid">
+				<!-- START OF SIDEBAR -->
+				<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+				<!-- END OF SIDEBAR -->
+
+				<div class="mdl-cell mdl-cell--9-col ">
+
+					<!-- START OF CONTENT -->
+ 					<div class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp">
+						<div class="hrms-box-title">
+							<p>Add Employee</p>
+						</div>
+						
+						<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+							<div class="mdl-tabs__tab-bar">
+									<a href="#personal_details"  class="mdl-tabs__tab personal_details is-active">1. Personal Details</a>
+									<a href="#contract_details" class="mdl-tabs__tab contract_details">2. Contact Details</a>
+									<a href="#job_details" class="mdl-tabs__tab job_details">3. Job Details</a>
+							</div>
+							
+							<form class="form" method="post" enctype="multipart/form-data" id="employeeForm">
+
+							<div class="mdl-tabs__panel hrms-new-emp-tab is-active" id="personal_details">
+								<!-- START OF PERSONAL DETAILS FORM (1ST STEP)-->
+								
+
+								<div class="hrms-new-emp-tab-header">
+									<span class="hrms-new-emp-tab-header-title">Step 1. Personal Details</span><br>
+									<span class="hrms-new-emp-tab-header-details">Please enter employee personal Information</span>
+								</div>
+								<div class="mdl-grid">
+								
+								<div class="mdl-cell mdl-cell--6-col">
+
+												<label for="fname">First Name <span class="required_asterisk">*</span></label>
+												<input id="fname" name="fname" class="hrms-form-control" type="text" placeholder="First Name">
+
+												<label for="mname">Middle Name <span class="required_asterisk">*</span></label>
+												<input id="mname" name="mname" class="hrms-form-control" type="text" placeholder="Middle Name">
+
+												<label for="lname">Last Name <span class="required_asterisk">*</span></label>
+												<input id="lname" name="lname" class="hrms-form-control" type="text" placeholder="Last Name">
+    			
+								</div>
+								<div class="mdl-cell mdl-cell--6-col ">
+													<label>Date of birth <span class="required_asterisk">*</span></label>
+													<input name="dob" class="hrms-form-control" type="date">
+													
+													<label for="lname">Marital status <span class="required_asterisk">*</span></label>
+													<input id="mstatus" name="mstatus" class="hrms-form-control" type="text" placeholder="Marital status">
+													
+													<label for="file">Upload a Signature <span class="required_asterisk">*</span></label>
+													<input id="file" name="signature" class="hrms-form-control" type="file" accept="*">
+								
+								</div>
+	
+								</div>
+								
+								<div class="mdl-grid">
+								    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+								       <a href="/employee" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-red">Cancel</a>
+								    </div>
+								    <div class="mdl-cell mdl-cell--6-col mdl-typography--text-right ">
+								    	<a id="tab-1-next" data-tabId=""  class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green next_to_contract">Next <i class="material-icons">last_page</i></a>
+								    </div>						
+								</div>
+								
+								
+							</div>
+							<div class="mdl-tabs__panel hrms-new-emp-tab" id="contract_details">
+							<!-- START OF CONTACT DETAILS FORM (2ND STEP)-->
+								<div class="hrms-new-emp-tab-header">
+									<span class="hrms-new-emp-tab-header-title">Step 2. Contact Details</span><br>
+									<span class="hrms-new-emp-tab-header-details">Please enter employee contact information</span>
+								</div>
+								<div class="mdl-grid">
+										<div class="mdl-cell mdl-cell--6-col">
+										
+											<label for="fname">Email <span class="required_asterisk">*</span></label>
+											<input id="emaddress" name="emaddress" class="hrms-form-control" type="text" placeholder="Email">
+										
+											<label for="mname">Phone number <span class="required_asterisk">*</span></label>
+											<input id="phone" name="phone" class="hrms-form-control" type="text" placeholder="Phone">
+										
+											<label for="lname">Address <span class="required_asterisk">*</span></label>
+											<input id="location" name="location" class="hrms-form-control" type="text">
+										
+										</div>
+										<div class="mdl-cell mdl-cell--6-col ">
+											<label>Nationality <span class="required_asterisk">*</span></label>
+											<input id="nationality" name="nationality" class="hrms-form-control" type="text" placeholder="Nationality">
+										<label>National ID <span class="required_asterisk">*</span></label>
+											<input id="nid" name="nid" class="hrms-form-control" type="text" placeholder="Enter national ID">
+										
+										
+										</div>
+										
+										
+										
+										</div>
+										
+										<div class="mdl-grid">
+											<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+												<a id="tab-2-prev" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green back_to_personal_info"><i
+													 class="material-icons">first_page</i>Previous</a>
+											</div>
+											<div class="mdl-cell mdl-cell--6-col mdl-typography--text-right">
+												<a id="tab-2-next" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green next_to_job">Next <i
+													 class="material-icons">last_page</i></a>
+											</div>
+										</div>
+							
+							</div>
+							<div class="mdl-tabs__panel hrms-new-emp-tab" id="job_details">
+								<!-- START OF JOB DETAILS FORM (2RD STEP)-->
+							
+										<div class="hrms-new-emp-tab-header">
+											<span class="hrms-new-emp-tab-header-title">Step 3. Job details</span><br>
+											<span class="hrms-new-emp-tab-header-details">Please enter employee job information</span>
+										</div>
+								<div class="mdl-grid">
+										<div class="mdl-cell mdl-cell--6-col">
+										
+											<label for="fname">Starting date <span class="required_asterisk">*</span></label>
+											<input id="sartDate" name="sartDate" class="hrms-form-control" type="date" placeholder="Nationality">
+											<label for="ContractType">Contract Type <span class="required_asterisk">*</span></label>
+												<select id="ContractType" name="ContractType" class="hrms-form-control">
+													<span th:each="c:${contractType}">
+											<option th:attr="value=${c.getContractTypeId()}"><span
+												th:utext="${c.getDescription()}"></span></option>
+												</span>
+												</select>
+											<label for="department">Department <span class="required_asterisk">*</span></label>
+												<select id="department" name="department" class="hrms-form-control">
+													<span th:each="d:${departments}">
+											<option th:attr="value=${d.getDepartmentId()}"><span
+												th:utext="${d.getDepartmentName()}"></span></option>
+												</span>
+												</select>
+												<label for="department">Position <span class="required_asterisk">*</span></label>
+												<select id="position" name="position" class="hrms-form-control">
+													<span th:each="p:${positions}">
+											<option th:attr="value=${p.getPositionId()}"><span
+												th:utext="${p.getDescription()}"></span></option>
+												</span>
+												</select>
+										  </div>
+									<div class="mdl-cell mdl-cell--6-col ">
+										<label for="endDate">Ending date <span class="required_asterisk">*</span></label>
+											<input id="endDate" name="endDate" class="hrms-form-control" type="date" placeholder="Nationality">
+										
+										
+										<label>Monthly Salary <span class="required_asterisk">*</span></label>
+										<input id="msalary" name="msalary" class="hrms-form-control" type="text" placeholder="FRW">
+										<label for="file">Upload a Contract <span class="required_asterisk">*</span></label>
+										<input id="cfile" name="cfile" class="hrms-form-control" type="file" accept="*">		
+													
+									</div>
+								</div>
+										
+										<div class="mdl-grid">
+											<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+												<a id="tab-3-prev" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green"><i
+													 class="material-icons">first_page</i>Previous</a>
+											</div>
+											
+											<div class="mdl-cell mdl-cell--6-col mdl-typography--text-right">
+												<div class="mdl-spinner mdl-spinner--single-color mdl-js-spinner is-active" style="float:left"></div>
+												<button id="btn-submit" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green">Save</button>
+												
+											</div>
+										</div>
+								</div>
+								
+								</form>
+						</div>
+					
+					</div>
+					<!-- END OF CONTENT -->
+				</div>
+			</div>
+		
+		</main>
+		<footer class="mdl-mini-footer">
+	<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<script type="text/javascript">
+		$( document ).ready(function(){
+		
+			//validate tab1 form & activate tab 2
+			$("#tab-1-next").on('click', function(event){
+				event.preventDefault();
+				var fname = $("#fname").val(),
+					lname = $("#lname").val(),
+					dob = $("#dob").val(),
+					status = $("#status").val();
+				if(fname == ''){
+					alert("Please enter first name");
+				}else if(lname == ''){
+					alert("Please enter last name");
+				}else if(dob == ''){
+					alert("Please enter date of birth");
+				}else if(status == ''){
+					alert("please enter merital status");
+				}else {
+					//disable personal details tab
+					$(".personal_details").removeClass("is-active");
+					$("#personal_details").removeClass("is-active");
+					
+					//enable contact information tab
+					$(".contract_details").addClass("is-active");
+					$("#contract_details").addClass("is-active");
+					
+				}
+			});
+			
+			$("#tab-2-prev").on('click', function(event){
+				event.preventDefault();
+				$(".contract_details").removeClass("is-active");
+				$("#contract_details").removeClass("is-active");
+				
+				$(".personal_details").addClass("is-active");
+				$("#personal_details").addClass("is-active");
+			});
+			//Validate Tab2 and activate Tab 3
+			$("#tab-2-next").on('click', function(event){
+				event.preventDefault();
+				var emailAddress = $("#emaddress").val(),
+					phone = $("#phone").val(),
+					location = $("#location").val(),
+					nationality = $("#nationality").val(),
+					indexAt = emailAddress.indexOf("@"),
+					indexDot = emailAddress.indexOf(".");
+				if(emailAddress == ''){
+					alert("Please enter an email");
+				}else if(indexAt < 1 || indexDot < 1){
+					alert("Please enter a valid email address");
+				}else if(phone == ''){
+					alert("Please enter a phone number");
+				}else if(location == ''){
+					alert("Please enter Address information");
+				}else if(nationality == ''){
+					alert("Please enter nationality");
+				}else {
+					//check if email address is already registered in the system
+					var url = "/userByEmail";
+					$.ajax({
+						type: "POST",
+						url: url,
+						data: {email: emailAddress},
+				        success: function(data, textStatus, jqXHR){
+				        	if(data == "True") {
+				        		alert("Email Address already exist");
+				        	}else {
+				        		
+				        		//disable second tab
+								$(".contract_details").removeClass("is-active");
+								$("#contract_details").removeClass("is-active");
+								//activate third tab
+								$(".job_details").addClass("is-active");
+								$("#job_details").addClass("is-active");
+				        		
+				        	}
+				        },
+				        error: function(jqXHR, textStatus, errorThrown){
+				        	console.log(jqXHR.responseText);
+				        }
+					});
+				}
+			});
+			$("#tab-3-prev").on('click', function(event){
+				event.preventDefault();
+				$(".job_details").removeClass("is-active");
+				$("#job_details").removeClass("is-active");
+				
+				$(".contract_details").addClass("is-active");
+				$("#contract_details").addClass("is-active");
+			});
+			
+			//submit form
+			$("#employeeForm").submit(function(event){
+				event.preventDefault();
+				ajaxEmpPost();
+			});
+			
+			function ajaxEmpPost(){
+				
+				//get Form data
+				var form = $("#employeeForm")[0];
+				var data = new FormData(form);
+				//add controlls to disable the button here
+				//$("#btn-submit").prop("disabled", true);
+				//show spiner
+				$(".mdl-spinner").css({"display":"block"});
+				$.ajax({
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: "/api/employee/add",
+					data:data,
+					// prevent jQuery from automatically transforming the data into a query string
+			        processData: false,
+			        contentType: false,
+			        cache: false,
+			        timeout: 1000000,
+			        success: function(data, textStatus, jqXHR){
+			        	console.log("SUCCESS:",data);
+			        	if(data == 'SUCCESS'){
+			        		//$("#btn-submit").prop("disabled", false);
+				        	$("#employeeForm")[0].reset();
+				        	//hide spinner
+				        	$(".mdl-spinner").css({"display":"none"});
+				        	
+				        	alert("Employee Information submitted successfully!")
+			        	}
+			        	
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) {
+			        	console.log("ERROR:",jqXHR.responseText)
+			        	//$("#btn-submit").prop("disabled", false);
+			        	//hide spinner
+			        	$(".mdl-spinner").css({"display":"none"});
+			        }
+				});
+			}
+		});
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

@@ -1,0 +1,897 @@
+body{
+
+	font-family: "Roboto","Helvetica","Arial",sans-serif; 
+}
+
+.demo-layout-transparent {
+  background: url('../images/green-background.png') center / cover;
+  height: 60%;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  color: white;
+}
+
+.logo-web-header{
+    border-radius: 500%;
+	height: 100px;
+	width: 100px;
+	margin-top:70px;
+}
+
+.hrms-carousel{
+	margin-top:100px;
+	color: #fff;
+}
+
+.aos-hrms-carousel-advert p{
+	font-style: bold;
+}
+.hrms-header-call-action {
+	background-color: rgb(0,92,43,0.63);
+	padding: 20px;	
+}
+.hrms-header-call-action p{
+	color: #fff;
+}
+.hrms-header-call-action a{
+	background-color: #fff;
+	border-radius: 50px;
+}
+.hrms-header-call-action{
+	width: 80%;
+}
+.auth{
+	background: url('../images/green-background.png') center / cover;
+
+	height:100%;
+	width: 100%;
+}
+.mdl-layout__header{
+	background-color: #F5F6FA;
+	color: #34495E;
+	box-shadow:none;
+	
+}
+.user-menu{
+	list-style: none;
+	display: block;
+	height: 50px;
+	background: #34495E;
+	color: #fff;
+	
+}
+
+.user-menu i{
+	margin-top: 10px;
+}
+
+
+ .cursor {
+		 	cursor:pointer;
+		}
+
+.hrms-nav-btn{
+		display: inline-flex;
+		align-items: center;
+		text-decoration: none;
+   
+
+}	
+.hrms-nav-btn > i {
+		margin-right: 0.3em;
+}	
+
+a{
+	color: #000000;
+}
+	
+.hrms-nav-btn .material-icons{
+
+	font-size: 15px;
+
+}
+
+.hrms-red{
+	color:#E74C3C;
+}
+.hrms-main-menu{
+	background-color: #27AE60;
+	height: 45px;
+}
+
+
+.hrms-top-nav{
+
+	height: 50px;
+	
+    
+}
+
+.mdl-layout__header-row .mdl-navigation__link{
+line-height: 45px;
+}
+
+.hrms-top-nav-active{
+
+	background: #2980B9;
+
+}
+.mdl-navigation__link{
+opacity: 1; 
+width: 120px;
+}
+
+
+.hrms-top-nav:hover{
+  background: #3498db;
+} 
+
+.user-btn:hover{
+ color:#2980b9;
+}
+.hrms-main{
+	background-color: #DFE5F5;
+}
+.mdl-mini-footer{
+	padding-top: 5px;
+	padding-bottom: 2px; 
+     
+    color: #101010;
+	background-color: #fff;
+	
+}
+.mdl-mini-footer p{
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 9pt;
+	
+}
+.mdl-mini-footer p a{
+	text-decoration: none;
+}
+footer{
+	height:30px;	
+}
+.hrms-menu-item{
+	overflow: hidden;
+    font-size: 14px;
+    
+    letter-spacing: 0;
+    cursor: pointer;
+    height: 35px;
+    line-height: 35px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+	user-select: none;
+	color: rgba(0,0,0,.87);
+	border: none;
+}
+
+.hrms-side-menu{
+	background-color:#F5F6FA;
+	display:table;
+}
+.hrms-side-menu ul li {
+	list-style: none;
+	/* min-width: 124px; */
+	background-color: #fff;
+	margin-top:5px;
+	border:solid #E5E5E5 1px; 
+}
+
+
+.hrms-side-menu .hrms-sub-menu{
+	margin-left:20px;
+}
+
+
+.hrms-side-menu .hrms-sub-menu li{
+	margin-top:0px;
+	border:none;
+}
+
+.hrms-side-menu ul li .mdl-button{
+	border-radius:0px;
+}
+.hrms-side-menu ul{
+	font-size: 10pt;
+	line-height: 24px;	
+	margin: 0;
+	padding-left: 0; 
+ }
+ .hrms-menu-level-1 .material-icons {
+	color:#2980B9;
+}
+.hrms-menu-level-2 .material-icons {
+	color:#27AE60;
+}
+.hrms-menu-level-1 .mdl-button, .logout-menu .mdl-button{
+	width: 267px;
+    text-align: left;
+}
+.hrms-menu-level-2 .mdl-button{
+	width: 243px;
+	text-align: left;
+}
+.hrms-side-menu ul .logout-menu{
+	 margin-top: 60px;
+	 background: #E74C3C;	 
+ }
+  .hrms-side-menu ul .logout-menu a{
+	  color:#fff;
+  }
+.hrms-side-menu ul li a .material-icons, .hrms-side-menu ul li a{
+	font-size:10pt;
+}
+.mdl-button{
+	text-transform: capitalize;
+}
+.hrms-side-menu ul .hrms-menu-title{
+	background: #222F3E;
+	padding-top: 15px;
+	padding-left: 17px;
+}
+.hrms-side-menu ul .hrms-menu-title p{
+	color: #fff;
+}
+.hrms-menu-active{
+	border-left: solid #2980B9 4px;
+}
+.hrms-menu-navigate_icon{
+	float:right;
+	margin-top:12px;
+	font-size:14px;
+	font-weight: bold;
+}
+
+.hrms-btn-round{
+    border: solid 1px #2980b9;
+	border-radius:50px;
+	background:transparent;
+}
+.border-red{
+	border-color: #ff4081;
+}
+.border-green{
+	border-color:#27AE60;
+}
+.border-black{
+	border-color:#000000;
+}
+.hrms-btn-circle{
+	border: solid 1px #2980b9;
+	border-radius: 50px;
+	background:#fff;
+}
+.hrms-main-content-title p{
+	font-size:12pt;
+	font-weight: bold;
+}
+.hrms-box-title{
+	height: 40px;
+	background-color:#27AE60;
+	color:#fff; 
+} 
+.hrms-box-title p, .hrms_profile-box-title p{
+	font-weight: bold;
+	line-height: 40px;
+	padding-left:20px;
+}
+
+.hrms_profile-box-title{
+	height: 40px;
+	background-color:#2980B9;
+	color:#fff; 
+} 
+
+.hrmsLeave-box-title {
+	height: 40px;
+	background-color:#222F3E;
+	color:#fff; 
+}
+.hrmsLeave-box-title p{
+	font-weight: bold;
+	line-height: 40px;
+	padding-left:20px;
+}
+.hrms-form-control{
+	border:solid 1px #707070;
+	display: block;
+    width: 80%;
+    height: 18px;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 39px;
+   
+	margin-bottom: 10px;
+	margin-top:5px;
+}
+
+
+.hrms-new-emp-tab{
+	padding-left: 30px;
+	padding-top:10px;
+	background-color:#F5F6FA;
+	padding-right:30px;
+	
+}
+.hrms-new-emp-tab-header{
+	padding-left: 16px;
+	border-bottom:dashed 1px #707070;
+	padding-bottom:10px;
+}
+.hrms-new-leave-tab-header{
+	padding-left: 5px;
+	border-bottom:double 1px #707070;
+	padding-bottom:10px;
+	width: 90%;
+}
+.hrms-new-emp-tab-header-title{
+	font-size:12pt;
+	font-weight: bold;
+}
+
+.hrms-new-emp-tab label{
+	margin-left:10px;
+	color:#707070;
+	font-size:10pt;
+	
+}
+
+select.hrms-form-control {
+    height: calc(2.25rem + 2px);
+    border-radius: 39px;
+}
+.mdl-progress {
+  display: inline-block;
+  position: relative;
+  height: 25px;
+  width: 80%;
+  margin-left:10px;
+  margin-top:20px;
+  margin-bottom:20px;
+  max-width: 100%; }
+  
+  .mdl-progress > .progressbar {
+  background-color: #2980B9;
+  z-index: 1;
+  width: 100%;
+  border-radius: 100px;
+ }
+ .mdl-progress > .bufferbar {
+  background-color: black;
+  z-index: 0;
+  border-radius: 100px;
+  left: 100; }
+  
+  .ProgressRemaining{
+  	width: auto;
+    float: left;
+  	margin-top:20px;
+   	margin-bottom:20px;
+  }
+  #main { 
+    width: 90%;
+    margin: 0 auto;
+}
+.remainingDays{
+	width: auto;
+	float: right;
+	margin-top:20px;
+   	margin-bottom:20px;
+}
+.mdl-dialog{
+	width: 23%;
+}
+#Div2 {
+  display: none;
+}
+.hrms-profile-image{
+	height: 150px;
+	width: 150px;
+}
+.mdl-division{
+	float: right;
+}
+.hrms_profile{
+	margin: 0px;
+}
+
+.hrms_profile img{
+	height: 120px;
+	width: 120px;
+}
+
+.emp-email{
+	margin-top:5px;
+}
+ .emp-email .material-icons{
+	font-size:13pt;
+	
+}
+
+.hrms-main-year{
+    font-weight: bold;
+}
+
+.hrms-form-year{
+    border:solid 1px #707070;
+    width: 15%;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 39px;
+}
+select.hrms-form-year {
+    height: calc(2rem + 2px);
+    border-radius: 39px;
+    text-indent: 20px;
+}
+.hrmsSalary-box-title {
+    height: 40px;
+    background-color:#2980B9;
+    color:#fff; 
+}
+.hrmsSalary-box-title p{
+    font-weight: bold;
+    line-height: 40px;
+    padding-left:20px;
+}
+.hrms-new-leave {
+    background-color:#F5F6FA;
+    padding-right:30px;
+    
+}
+legend {
+    color: #000;
+    padding: 3px 6px;
+    font-weight: bold;
+       margin-left: 20px;
+}
+fieldset{
+    border:solid 1px #707070;
+    background-color: transparent;
+    border: solid 2px #707070;
+    border-radius: 10px;
+    margin: 25px;
+}
+
+.mdl-table-leave th{
+    background-color: #F5F6FA;
+    text-align: left;
+    font-weight: bold;
+    font-size: 15px;
+}
+.mdl-table-leave td{
+    text-align: left;
+   
+}
+
+.emp-info-td{
+	width: 40%;
+	height: 50px;
+	font-weight:bold;
+	padding-right:20px;
+	
+}
+.basic_info{
+	font-size:10pt;
+}
+.profile-btns{
+	margin-top:10px;
+}
+.emp-info-values{
+	color:#2980B9;
+}
+.emp-name{
+	font-weight:bold;
+	margin-top:10px;
+     font-family: "Roboto","Helvetica","Arial",sans-serif; 
+    
+    
+}
+	
+.emp-info-btns{
+	border:none;
+	border-radius:50px;
+	color:#fff;
+}
+.emp-info-btns .material-icons{
+	font-size:11pt;
+}
+.emp-info-btn-green{
+	background-color:#27AE60;
+}
+.emp-info-btn-green:hover{
+	background-color:#2ecc71;
+}
+.emp-info-btn-blue{
+	background-color:#2980B9;
+}
+.emp-info-btn-blue:hover{
+	background-color:#3498db;
+}
+.emp-info-btn-orange{
+	background-color:#E67E22;
+}
+.emp-info-btn-orange:hover{
+	background-color:#f39c12;
+}
+.edit-department{
+	margin: 20px;
+	float: right;
+}
+.hrms-main-year{
+	font-weight: bold;
+}
+
+.hrms-form-year{
+	border:solid 1px #707070;
+    width: 15%;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 39px;
+}
+select.hrms-form-year {
+    height: calc(2rem + 2px);
+    border-radius: 39px;
+    text-indent: 20px;
+}
+.hrmsSalary-box-title {
+	height: 40px;
+	background-color:#2980B9;
+	color:#fff; 
+}
+.hrmsSalary-box-title p{
+	font-weight: bold;
+	line-height: 40px;
+	padding-left:20px;
+}
+.hrms-new-leave {
+	background-color:#F5F6FA;
+	padding-right:30px;
+	
+}
+legend {
+    color: #000;
+    padding: 3px 6px;
+    font-weight: bold;
+   	margin-left: 20px;
+}
+fieldset{
+    border:solid 1px #707070;
+	background-color: transparent;
+	border: solid 2px #707070;
+	border-radius: 10px;
+	margin: 25px;
+}
+
+.mdl-table-leave th{
+	background-color: #F5F6FA;
+	text-align: left;
+	font-weight: bold;
+	font-size: 15px;
+}
+.mdl-table-leave td{
+	text-align: left;
+}
+
+.new-info-btn-li{
+	padding-bottom:12px;
+	border-bottom:dashed 1px #ccc;
+}
+
+.hrms-modal{
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); 
+	background-color: rgba(0,0,0,0.6); 
+	border:none;
+  }
+
+.hrms-modal-close{
+    color: #c0392b;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor:pointer;
+}
+  
+.hrms-modal-content{
+	background-color: #fefefe;
+    margin: 5% auto; 
+}
+
+.new-basic-info-width{
+	width:60%;
+}
+
+.hrms-modal-small{
+	width:300px;
+}
+ .hrms-modal-medium{
+	width:430px;
+} 
+
+.hrms-modal-header{
+	background-color:#2980B9;
+	height:20px;
+	padding:10px;
+	color:#fff;
+	font-weight:bold;
+}
+.hrms-modal-header2{
+	background-color:#222F3E;
+	height:20px;
+	padding:10px;
+	color:#ffffff;
+	font-weight:Medium;
+	
+	
+}
+.title-shading{
+	background-color:#DFE5F5;
+	height:18px;
+	padding:10px;
+	margin-top:10px;
+	color:#ffffff;
+	font-weight:Medium;
+	
+	color:#000000;
+}
+ 
+
+.hrms-modal-footer{
+	background-color:#2980B9;
+	height:20px;
+	padding:10px;
+	color:#fff;
+	font-weight:bold;
+}
+
+.hrms-modal-body {
+	padding:20px;
+}
+ 
+.mdl-leave-close{
+	height: 30px;
+	width: auto;
+}
+.required_asterisk{
+	color:#E74C3C;
+}
+.emp-info-title{
+	    font-family: "Roboto","Helvetica","Arial",sans-serif;
+		font-size: 16px;
+		font-weight: 400;
+		letter-spacing: .04em;
+	    color: rgba(0,0,0,.87)
+}
+.mdl-layout__header-row{
+	height:50px;
+	padding-left:0px;
+}
+.hrms-menu-btn{
+	margin-left:10px;
+	
+	
+}
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+} 
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+
+} 
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+
+} 
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+} 
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+		.hrms-main-menu{
+			padding-left:317px;
+		}
+}
+
+
+.text-red{
+	color:#e74c3c;
+	
+}
+.text-green{
+	color:#27ae60;
+	
+}
+.text-black{
+	color:#2c3e50;
+	
+}
+.approve-btn{
+	margin-left: 15px;
+}
+.hrms-form-control-textarea{
+	border: solid 1px #707070;
+    display: block;
+    width: 90%;
+    padding: 6px 12px;
+    font-size: 13px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    margin-top: 5px;
+    
+}
+.hrms-modal-leave-status{
+	float:right;
+}
+
+
+
+
+
+
+/* 
+.drop {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    font-family: Lobster, Arial, serif;
+    font-size: 30px;
+    color: #333;
+    background-color: rgba(255,255,255,.2);
+    border: 5px dashed rgba(51,51,51,.4);
+    cursor: pointer;
+    transition-properties: border;
+    transition-duration: 0.2s;
+  
+    &.dragging,
+    &:hover {
+        border-color: rgba(51,51,51,.8);
+    }
+  
+    p {
+        position: absolute;
+        top: 50%;
+        width: 100%;
+        margin-top: -19px;
+        margin-bottom: 0;
+        text-align: center;
+    }
+} 
+
+.image-resize {
+    max-width: 800px;
+    margin: auto;
+}
+
+.btn {
+    margin-top: 20px;
+    padding: 8px 25px;
+    font-family: "Ubuntu";
+    font-size: 16px;
+    color: #fff;
+    background-image: linear-gradient(to bottom, #c92437 0%, darken(#c92437, 10%) 100%);
+    border: 0;
+    border-radius: 5px;
+    box-shadow: 1px 1px 2px rgba(0,0,0,.3);
+  
+    .fa:first-child {
+        margin-right: 5px; 
+    }
+}
+
+.thumbnail {
+    display: inline-block;
+    margin: auto;
+    padding: 5px;
+    background-color: rgba(255,255,255,.4);
+    border-radius: 5px;
+  
+    img {
+        display: block;
+        border-radius: 5px;
+    }
+}
+*/
+
+.hrms-userdashbord-table td{
+	border: solid 0.5px #cecdcf;
+	width: 200px;
+}
+.userdashIcon {
+	color: #27ae60;
+}
+.leave-card{
+	width:300px;
+	height: 145px;
+	text-align:center;
+}
+.salary_dashboard_card{
+  background-color:#27ae60;
+  color:#ffffff;
+  
+}
+.salary_dashboard_card_text{
+	font-size:15px;
+	font-weight:bold;
+}
+.salary_dashboard_table th{
+	background-color:#3498db;
+	border: solid 0.5px #979799;
+	color:#ffffff;
+	
+}
+.salary_dashboard_table td{
+	
+	border: solid 0.5px #979799;
+	width: 100px;
+}
+.gantchart_header{
+	Background-color:#2980b9;
+		
+}
+.gantchart_title{
+	font-size:15px;
+	color:#ffffff;
+	font-family: "Roboto","Helvetica","Arial",sans-serif;
+}
+
+.gantchart_footer {
+	Background-color:#ffffff;
+	height:50px;
+		
+}
+.leave_dashboard_upper{
+	border: 1px solid #959596;
+	border-radius: 15px;
+	margin-left:13px;
+	margin-right:13px;
+}
+.leave_dasboard_upper_submit{
+	Background-color:#27ae60;
+	border: solid 0.5px #27ae60;
+	color: #ffffff;
+	
+}
+.leave_tab{
+	isplay:-webkit-flex;display:-ms-flexbox;display:flex;-webkit-flex-direction:row;
+	-ms-flex-direction:row;flex-direction:row;-webkit-justify-content:center;
+	-ms-flex-pack:center;justify-content:left;-webkit-align-content:space-between;
+	-ms-flex-line-pack:justify;align-content:space-between;-webkit-align-items:flex-start;
+	-ms-flex-align:start;
+	align-items:flex-start;height:48px;padding:0;margin:0;border-bottom:1px solid #e0e0e0
+}

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+	
+</head>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+	
+		<!-- START HEADER FRAGMENT -->
+		
+		<th:block th:include="fragments/dashboard/header :: header"></th:block> 
+       
+		<!-- END HEADER FRAGMENT -->
+
+		<main class="mdl-layout__content hrms-main">
+		
+			<div class="mdl-grid">
+					  <!-- START OF SIDEBAR -->
+						<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+					<!-- END OF SIDEBAR -->
+					
+				<div class="mdl-cell mdl-cell--9-col ">
+                  
+				      <!-- START OF CONTENT -->
+
+					<div class="mdl-grid">
+						<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+									<div class="hrms-main-content-title">
+										<p>Employees</p>
+									</div>
+						</div>
+						<div class="mdl-cell mdl-cell--6-col mdl-typography--text-right">
+							<a class="add_person hrms-btn-circle mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab" href="/add_employee">
+								<i class="material-icons">person_add</i>
+							</a>
+							
+							<button class="create_person hrms-btn-circle mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab">
+								<i class="material-icons">create</i>
+							</button>
+							
+							<button id="delete-btn" class="delete_person hrms-btn-circle mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--mini-fab text-red">
+								<i class="material-icons">delete_outline</i>
+							</button>
+						</div>						
+					</div>
+					<div class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp">
+						<div class="hrms-box-title"><p>List of Employees</p></div>
+
+                            <table id="mdl-data-table" class="mdl-data-table mdl-js-data-table  mdl-shadow--2dp">
+								<thead>
+									<tr>
+										<th><input class="checkboxAll" id="checkboxAll" type="checkbox" /></th>
+										<th class="mdl-data-table__cell--non-numeric">Emp. number</th>
+										<th>First name</th>
+										<th>Last name</th>
+										<th>Department</th>
+										<th>Phone Number</th>
+										<th>Email Address</th>
+									</tr>
+								</thead>
+                                <tbody id="mdl-data-table-body">
+								
+								</tbody>
+							</table>
+					</div>
+					<!-- END OF CONTENT -->
+				</div>
+			</div>
+		</main>
+		<footer class="mdl-mini-footer">
+	<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<script>
+		$( document ).ready(function(){
+			
+			getAllEmployeeList();
+			
+			
+			//delete employee
+			$("#delete-btn").on('click', function(event){
+				event.preventDefault();
+				var empId = [];
+				$(':checkbox:checked').each(function(i){
+					empId[i] = $(this).val();
+			     });
+				if(empId === undefined || empId.length == 0){
+					alert("Please select employee to delete");
+				}else {
+					//console.log(empId);
+					var r = confirm("Are you sure, You want to delete selected record?");
+					if( r == true ){
+						deleteEmployees(empId);
+					}
+				}
+			});
+			
+			function deleteEmployees(empIds){
+				$.ajax({
+					type:'DELETE',
+					contentType: "application/json",
+					url:'/api/employee/deleteEmployee',
+					data:JSON.stringify(empIds),
+					success: function(data, status){
+						console.log(data);
+						if(data == "SUCCESS"){
+							getAllEmployeeList();
+						}
+					},
+					error: function(jqXHR, textStatus, errorThrown){
+						alert("ERROR:",jqXHR.responseText);
+					}
+				});
+			}
+			
+			
+	 //get all employees list function
+	 function getAllEmployeeList(){
+				var tableRaw = "";
+				$.get("/api/employee/getEmployeeList", function(data, status){
+					console.log(data);
+					console.log(status);
+					if(status == "success"){
+						$.each(data, function(key,val){
+							if(val.enabled == true){
+								tableRaw +='<tr class="hrms-tbl-tr" data-emId="'+val.employeeId+'">';
+								tableRaw +='<td><input class="selectable" type="checkbox" name="employeId[]" value="'+val.employeeId+'"/></td>';
+								tableRaw +='<td class="mdl-data-table__cell--non-numeric"><a href="/employee_profile/'+val.employeeId+'">AOS-SE-002</a></td>';
+								tableRaw +='<td>'+val.fistName+'</td>';
+								tableRaw +='<td>'+val.lastName+'</td>';
+                                tableRaw +='<td>'+val.departmentVO.departmentName+'</td>';
+								tableRaw +='<td>'+val.contactPhone+'</td>';
+								tableRaw +='<td>'+val.contactEmail+'</td>';
+								tableRaw +='</tr>';
+							}
+							$("tr.hrms-tbl-tr td label.mdl-checkbox").attr('data-empId', val.employeeId);
+						});
+					}else {
+						tableRaw += '<tr><td rowspan="5"> Error retrieving data! Please try again</td><tr>';
+					}
+					
+					//get the table body container
+					$("#mdl-data-table-body").html(tableRaw)
+				});
+			}
+			
+			
+			
+			
+			//select and disalect check checkboxes
+			var select_all = document.getElementById("checkboxAll");
+			var checkboxes = document.getElementsByClassName("selectable");
+			
+			select_all.addEventListener("change", function(e){
+			    for (i = 0; i < checkboxes.length; i++) { 
+			        checkboxes[i].checked = select_all.checked;
+			    }
+			});
+				
+			/* for (var i = 0; i < checkboxes.length; i++) {
+			    checkboxes[i].addEventListener('change', function(e){ //".checkbox" change 
+			        //uncheck "select all", if one of the listed checkbox item is unchecked
+			        if(this.checked == false){
+			            select_all.checked = false;
+			        }
+			        //check "select all" if all checkbox items are checked
+			        if(document.querySelectorAll('.checkbox:checked').length == checkboxes.length){
+			            select_all.checked = true;
+			        }
+			    });
+			} */
+		});
+		
+		
+		
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+
+
+
+	<style>
+		.no-js #loader {
+			display: none;
+		}
+	
+		.js #loader {
+			display: block;
+			position: absolute;
+			left: 100px;
+			top: 0;
+		}
+	
+		.se-pre-con {
+			position: fixed;
+			left: 0px;
+			top: 0px;
+			width: 100%;
+			height: 100%;
+			z-index: 9999;
+			background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+		<!-- START HEADER FRAGMENT -->
+
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+
+		<!-- END HEADER FRAGMENT -->
+
+		<main class="mdl-layout__content hrms-main">
+
+			<div class="mdl-grid">
+				<!-- START OF SIDEBAR -->
+				<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+				<!-- END OF SIDEBAR -->
+
+				<div class="mdl-cell mdl-cell--9-col ">
+				<!-- START OF CONTENT -->
+
+					<div  class="hrms-main-content hrms-box  mdl-card mdl-shadow--8dp">
+						<div class="hrmsSalary-box-title">
+							<p>Salary Advance</p>
+						</div>
+					<div class="mdl-tabs mdl-js-tabs hrms-new-leave mdl-js-ripple-effect ">
+					
+                     <form id="salaryAdvanceForm" method="post">
+                     	<fieldset>
+    						<legend>Request Salary Advance</legend>
+							<div class="mdl-tabs__panel  is-active hrm-leave" id="personal_details">
+								<div class="mdl-grid">
+								<div class="mdl-cell mdl-cell--6-col">
+ 											<label for="fname">Requested by :</label>
+												<input id="fname" class="hrms-form-control" type="text" th:attr="placeholder=${Userprofile.getFistName()}+' '+${Userprofile.getLastName()}" readonly="readonly" />
+    									
+    									    <label for="fname">Salary Advance start date : <span class="required_asterisk">*</span></label>
+									 <input class="hrms-form-control" id="sal-adv-due-date" name="due_date" type="date" />  			
+								</div>
+								<div class="mdl-cell mdl-cell--6-col ">
+									<label for="salary_adv_amount"> Salary Advance Amount : <span class="required_asterisk" >*</span></label>
+									<input class="hrms-form-control" id="salary_adv_amount" name="amount" type="text" placeholder="RWF"/>
+									
+									<label for="sal_adv_end_payment_date"> Salary Advance end date : <span class="required_asterisk">*</span></label>
+									<input class="hrms-form-control" id="sal_adv_end_payment_date" name="end_payment_date" type="date"  />
+								</div>
+								<div class="mdl-cell mdl-cell--12-col">
+								<label for="sal_adv_reason">Reason : <span class="required_asterisk" >*</span></label><br/>
+										 <textarea  class="form-control" id="reason" name="reason"  placeholder="Enter ..." required="required" style="width: 1000px; height: 20px;"></textarea>
+									      </div>
+								</div>
+								<div class="mdl-grid">
+									<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+										</div>
+									<div class="mdl-cell mdl-cell--6-col mdl-typography--text-right ">
+										<button type="submit" style="color: blue; font-weight: bold;" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green"><i class="material-icons" >check</i>Submit </button>
+									</div>						
+								</div>
+							</div>
+						</fieldset>
+						</form>
+					   </div>
+							</div><br/>
+						<div class="mdl-grid">
+						<div class="mdl-cell mdl-cell--8-col mdl-typography--text-left">
+							<div class="hrms-main-year">
+							Year :   <select id="designation" name="designation" class="hrms-form-year">
+											<option value="2018">2018</option>
+											<option value="2017">2017</option>
+											<option value="2016">2016</option>
+									 </select>
+							</div>
+						</div>						
+						</div>
+					<div  id="Div1" class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp">
+						<div class="hrmsSalary-box-title">
+							<p>Salary Advance Request Details</p>
+						</div>
+							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave">
+								<thead>
+									<tr>
+										<th  class="mdl-data-table__cell--non-numeric new-info-btn-education">No.</th>
+										<th>Amount</th>
+										<th>Application Date</th>
+										<th>Status</th>
+										<th>Approval progress</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="hrms-tbl-tr new-info-btn-education"  style="cursor: pointer;">
+										<td class="mdl-data-table__cell--non-numeric">1</td>
+										<td>John Doe</td>
+										<td>1 000 000</td>
+										<td>01/06/2018 4PM</td>
+										<td>2 months</td>
+									</tr>
+								</tbody>
+							</table>
+							</div>
+								<!-- END OF CONTENT -->
+							</div>
+						</div>
+				</main>
+				<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<div class="hrms-modal hidden" id="new-educational-info">
+		<div class="hrms-modal-content hrms-modal-small-small">
+			
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">Salary Advance Status</span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+				<div class="mdl-grid">
+					
+					<div class="mdl-cell mdl-cell--12-col">
+						<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-salary">
+								<thead>
+									<tr>
+										<th>#</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+							
+								<tbody>
+									<tr class=" new-info-btn-education"  style="cursor: pointer;">
+										<td>CHRO</td>
+										<td style="color: #2980B9">Approved</td>
+									</tr>
+
+									<tr class=" new-info-btn-education" style="cursor: pointer;">
+										<td>CFO</td>
+										<td style="color: #2980B9">Approved</td>
+									</tr>
+									<tr class=" new-info-btn-education" style="cursor: pointer;">
+									<td>CEO</td>
+										<td style="color: red;">Pending </td>
+									</tr>
+								</tbody>
+							</table></div>
+					
+				</div>
+			</div>
+	   </div>
+	</div>
+	<script type="text/javascript">
+		CKEDITOR.replace('reason', {})
+			
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

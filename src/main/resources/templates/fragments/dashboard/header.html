@@ -1,0 +1,37 @@
+<header class="mdl-layout__header" th:fragment="header">
+    <div class="mdl-layout__header-row">
+        <div class="mdl-layout-spacer"></div>
+        <div id="demo-menu-lower-left" class="cursor mdl-js-ripple-effect">
+            <div class="user-btn">
+                <table>
+                    <tr>
+                        <th rowspan="2"><i class="material-icons">person</i><i class="material-icons">arrow_drop_down</i></th>
+                        <th><div  th:utext="${Userprofile.getContactEmail()}"></div></th>
+                    </tr>
+                    <tr>
+                        <td>HR</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-left">
+            <li class="mdl-menu__item mdl-menu__item--full-bleed-divider"><a href="#" class="hrms-nav-btn"><i class="material-icons">account_circle</i>
+                    My Profile</a></li>
+            <li class="mdl-menu__item"><a href="/logout" class="hrms-nav-btn hrms-red"><i class="material-icons">power_settings_new</i>
+                   Logout <i class="material-icons">chevron_right</i></a></li>
+        </ul>
+    </div>
+    <div class="hrms-main-menu">
+
+        <div class="mdl-layout__header-row">
+            <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect hrms-top-nav hrms-top-nav-active"
+                        href="/employee">Employees</a>
+                    <a class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect hrms-top-nav" href="/leave_request">Request
+                        Leave</a>
+                    <a class="mdl-navigation__link mdl-button mdl-js-button mdl-js-ripple-effect hrms-top-nav" href="/salary_request">Request Salary
+                        Advance</a>
+                </nav>
+		</div>
+    </div>
+</header>

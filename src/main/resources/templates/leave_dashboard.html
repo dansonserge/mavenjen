@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block>
+<link rel="stylesheet" href="plugins/gantt_chatt/css/style.css" />
+
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+
+<link rel="stylesheet"
+	href="http://taitems.github.com/UX-Lab/core/css/prettify.css" />
+	
+
+<title>Salary Advance Dashboard</title>
+<style type="text/css">
+table th:first-child {
+	width: 150px;
+}
+
+.mdl-card__supporting-text {
+	width: 100%;
+	padding: 0;
+}
+
+.fn-gantt .leftPanel .name, .fn-gantt .leftPanel .desc, .fn-gantt .leftPanel .fn-label
+	{
+	width: 100%;
+}
+
+.fn-label {
+	font-weight: 13px;
+}
+
+.button, input, optgroup, select, textarea {
+	margin: 0;
+	color: #2d3436;
+	font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+}
+th {
+    text-align: right;
+}
+
+
+</style>
+</head>
+
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+		<div class="mdl-grid">
+			<!-- START OF SIDEBAR -->
+			<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+			<!-- END OF SIDEBAR -->
+			<div class="mdl-cell mdl-cell--9-col ">
+
+				<div class="mdl-grid leave_dashboard_upper">
+
+
+					<div class="mdl-cell mdl-cell--4-col">
+
+						<input class="hrms-form-control" name="datefrom" id="datefrom"
+							type="date" style="height: 30px;" />
+
+					</div>
+					<div class="mdl-cell mdl-cell--2-col">
+						<label style="padding-top: 8px;">~</label>
+					</div>
+
+					<div class="mdl-cell mdl-cell--4-col">
+						<input class="hrms-form-control" name="dateto" id="datefrom"
+							type="date" style="height: 30px;" />
+
+					</div>
+					<div class="mdl-cell mdl-cell--2-col">
+						<a
+							class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round leave_dasboard_upper_submit next_to_contract">Search
+							<i class="material-icons"> search </i>
+						</a>
+					</div>
+
+				</div>
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Overall
+									Leaves</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+								<div id="Overall"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Leaves
+									per Category</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+								<div id="Leave_Category"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Leaves
+									per Department</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+
+								<div id="departments"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+				<!-- GANTT CHART START -->
+				<div class="mdl-cell mdl-cell--12-col ">
+					<div class="demo-card-wide mdl-card mdl-shadow--2dp">
+						<div class="mdl-card__title gantchart_header">
+							<div class="mdl-card__title-text gantchart_title ">
+								Departments<select id="leave_department" name="leave_department">
+									<option value="Software engineering">Software
+										Engineering</option>
+									<option value="Finance">Finance</option>
+									<option value="Human Resource">Human Resource</option>
+									<option value="Sales and Marketing">Sales & Marketing</option>
+								</select>
+							</div>
+
+						</div>
+						<div class="mdl-card__supporting-text">
+							<div id="leaves_gantt" class="leaves_gantt"></div>
+
+						</div>
+						<div class="mdl-card__actions mdl-card--border">
+							<div class="mdl-grid gantchart_footer">
+								<div class="mdl-cell mdl-cell--4-col"
+									style="text-align: center;">
+									On Leave <br> 4
+								</div>
+								<div class="mdl-cell mdl-cell--4-col"
+									style="text-align: center;">
+									Present <br>10
+								</div>
+								<div class="mdl-cell mdl-cell--4-col"
+									style="text-align: center;">
+									Sick Leave <br>0
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+
+			<!-- END OF CONTENT -->
+		</div>
+
+		</main>
+		<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+		</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<script src="plugins/gantt_chatt/js/jquery.fn.gantt.js"></script>
+	<script
+		src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>
+	<script
+		src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>
+	<script src="http://taitems.github.com/UX-Lab/core/js/prettify.js"></script>
+	<!-- OVERALL LEAVES -->
+	<script type="text/javascript">
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+					[ 'availability', '' ], [ 'present', 75 ],
+					[ 'on leave', 25 ],
+
+			]);
+			var chart = new google.visualization.PieChart(document
+					.getElementById('Overall'));
+
+			chart.draw(data);
+		}
+	</script>
+	<!-- LEAVES PER CATEGORIES -->
+	<script type="text/javascript">
+		google.charts.load('current', {
+			'packages' : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(drawChart);
+
+		function drawChart() {
+
+			var data = google.visualization.arrayToDataTable([
+					[ 'Category', 'Leaves' ], [ 'Annual Paid', 75 ],
+					[ 'Medical', 30 ], [ 'Study', 34 ],
+					[ 'Incidental / Occasionnal', 25 ],
+
+			]);
+			var chart = new google.visualization.PieChart(document
+					.getElementById('Leave_Category'));
+
+			chart.draw(data);
+		}
+	</script>
+	<!-- LEAVES PER DEPARTMENTS -->
+	<script type="text/javascript">
+		google.charts.load("current", {
+			packages : [ 'corechart' ]
+		});
+		google.charts.setOnLoadCallback(drawChart);
+		function drawChart() {
+			var data = google.visualization.arrayToDataTable([
+					[ "Departments", "Leaves", {
+						role : "style"
+					} ], [ "SWE", 17, "#27ae60" ], [ "S&M", 13, "#f1c40f" ],
+					[ "Finance", 15, "#8e44ad" ], [ "HR", 9, "#d35400" ] ]);
+
+			var view = new google.visualization.DataView(data);
+			view.setColumns([ 0, 1, {
+				calc : "stringify",
+				sourceColumn : 1,
+				type : "string",
+				role : "annotation"
+			}, 2 ]);
+
+			var options = {
+				bar : {
+					groupWidth : "70%"
+				},
+				legend : {
+					position : "none"
+				},
+			};
+			var chart = new google.visualization.ColumnChart(document
+					.getElementById("departments"));
+			chart.draw(view, options);
+		}
+	</script>
+	<!-- GANTT CHART -->
+	<script>
+		$(function() {
+
+			"use strict";
+
+			$(".leaves_gantt").gantt({
+				source : [ {
+					name : "Amiri Mugarura",
+					values : [ {
+						from : "/Date(1320192000000)/",
+						to : "/Date(1322401600000)/",
+						label : "5 days",
+						customClass : "ganttRed"
+					} ]
+				}, {
+					name : " Claude Kabayiza",
+					values : [ {
+						from : "/Date(1322611200000)/",
+						to : "/Date(1323302400000)/",
+						label : "2 days",
+						customClass : "ganttRed"
+					} ]
+				}, {
+					name : "Ariane Mugisha",
+					values : [ {
+						from : "/Date(1323802400000)/",
+						to : "/Date(1325685200000)/",
+						label : "1 day",
+						customClass : "ganttGreen"
+					} ]
+				}, {
+					name : " Serge Danson",
+					values : [ {
+						from : "/Date(1325685200000)/",
+						to : "/Date(1325695200000)/",
+						label : "10 days",
+						customClass : "ganttBlue"
+					} ]
+				}, {
+					name : "Minani Jean Baptiste",
+					values : [ {
+						from : "/Date(1326785200000)/",
+						to : "/Date(1325785200000)/",
+						label : "12 days",
+						customClass : "ganttGreen"
+					} ]
+				}, {
+					name : " Mike Son",
+					values : [ {
+						from : "/Date(1328785200000)/",
+						to : "/Date(1328905200000)/",
+						label : "3 days",
+						customClass : "ganttBlue"
+					} ]
+				}, {
+					name : "Bruce Sean",
+					values : [ {
+						from : "/Date(1330011200000)/",
+						to : "/Date(1336611200000)/",
+						label : "12 days",
+						customClass : "ganttOrange"
+					} ]
+				}, {
+					name : "David Kim ",
+					values : [ {
+						from : "/Date(1336611200000)/",
+						to : "/Date(1338711200000)/",
+						label : "6 days",
+						customClass : "ganttOrange"
+					} ]
+				}, {
+					name : "Sandra Kyengo ",
+					values : [ {
+						from : "/Date(1336611200000)/",
+						to : "/Date(1349711200000)/",
+						label : "8 days",
+						customClass : "ganttOrange"
+					} ]
+				} ],
+				navigate : "scroll",
+				scale : "weeks",
+				maxScale : "months",
+				minScale : "days",
+				itemsPerPage : 10,
+				onItemClick : function(data) {
+					alert("Item clicked - show some details");
+				},
+				onAddClick : function(dt, rowId) {
+					alert("Empty space clicked - add an item!");
+				},
+				onRender : function() {
+					if (window.console && typeof console.log === "function") {
+						console.log("chart rendered");
+					}
+				}
+			});
+
+			$(".leaves_gantt").popover({
+				selector : ".bar",
+				title : "I'm a popover",
+				content : "And I'm the content of said popover.",
+				trigger : "hover"
+			});
+
+			prettyPrint();
+
+		});
+	</script>
+
+</body>
+<div class="se-pre-con"></div>
+</html>

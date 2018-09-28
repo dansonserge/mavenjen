@@ -1,0 +1,91 @@
+<div class="mdl-cell mdl-cell--3-col" th:fragment="sidebar">
+	<div class="mdl-cad mdl-shadow--2dp hrms-side-menu" >
+    <ul class="" >
+        <li class="hrms-menu-title"><a class="hrms-menu-item">
+                <p>MAIN NAVIGATION</p>
+            </a></li>
+        <li class="hrms-menu-level-1"><a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect employee-menu"
+                href="#"> <i class="material-icons">list</i> Employees<i class="material-icons hrms-menu-navigate_icon">navigate_before</i></a>
+        </li>
+        <!-- HRMS Submenu -->
+        <ul class="hrms-sub-menu employee-sub-menu hidden">
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect hrms-menu-active" href="/employee">
+                    <i class="material-icons">supervisor_account</i> Employees
+                </a>
+            </li>
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect" href="/add_employee">
+                    <i class="material-icons">person_add</i> Add employee
+                </a>
+            </li>
+        </ul>
+        <!-- End of  -->
+        <li class="hrms-menu-level-1"><a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect leave-menu"
+                href="#"><i class="material-icons">exit_to_app</i> Leaves <i class="material-icons hrms-menu-navigate_icon">navigate_before</i></a>
+        </li>
+        <!-- HRMS Submenu -->
+        <ul class="hrms-sub-menu leave-sub-menu hidden">
+             <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect " href="/user_dashboard">
+                    <i class="material-icons">home</i> Dashboard
+                </a>
+            </li>
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect " href="/leave_dashboard">
+                    <i class="material-icons">home</i> Leave-Dashboard
+                </a>
+            </li>
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect hrms-menu-active" href="/leave_request">
+                    <i class="material-icons">airplanemode_active</i> Request Leave
+                </a>
+            </li>
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect" href="approve_leave">
+                    <i class="material-icons">settings</i> Approve Leave
+                </a>
+            </li>
+        </ul>
+        <!-- End of  -->
+        <li class="hrms-menu-level-1"><a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect loan-menu"
+                href="#"><i class="material-icons">credit_card</i> Salary Advance <i class="material-icons hrms-menu-navigate_icon">navigate_before</i></a>
+        </li>
+        <!-- HRMS Submenu -->
+        <ul class="hrms-sub-menu loan-sub-menu hidden">
+        
+             <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect " href="/salary_dashboard">
+                    <i class="material-icons">home</i> Dashboard
+                </a>
+            </li>
+            
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect hrms-menu-active" href="/salary_request">
+                    <i class="material-icons">monetization_on</i> Request Salary Advance
+                </a>
+            </li>
+            
+            <li class="hrms-menu-level-2">
+                <a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect" href="/approve_salary">
+                    <i class="material-icons">settings</i> Approve Salary Advance
+                </a>
+            </li>
+            
+        </ul>
+        <!-- End of  -->
+
+        <li class="hrms-menu-level-1"><a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect profile-menu"
+                href="/employee_profile"><i class="material-icons">account_circle</i> My Profile</a>
+         </li>
+         
+         <li class="hrms-menu-level-1"><a class="hrms-menu-item mdl-js-button mdl-button mdl-js-ripple-effect profile-menu"
+                href="/setting"><i class="material-icons">settings</i> Settings</a>
+         </li>
+         
+        <li class="logout-menu"><a class="hrms-menu-item mdl-button mdl-js-button mdl-js-ripple-effect" href="/login"><i
+                    class="material-icons">power_settings_new</i> Logout <i class="material-icons">navigate_next</i></a>
+        </li>
+    </ul>
+   </div>
+  </div>

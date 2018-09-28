@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+	
+</head>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(../images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">	
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>  
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+		<div class="mdl-grid">
+				<!-- START OF SIDEBAR -->
+						<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+					<!-- END OF SIDEBAR -->
+				<div class="mdl-cell mdl-cell--9-col ">
+				      <!-- START OF CONTENT -->
+					<div class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp profile-box">
+					<div class="hrms_profile-box-title"><p>Profile</p></div>
+						<div class="hrms_profile mdl-grid">
+							<div class="mdl-cell mdl-cell--2-col">
+								<img src="../images/images.png">
+							</div>
+							<div class="mdl-cell mdl-cell--10-col hrms-profile-basic-info">
+								<div class="emp-name">
+								<span th:utext="${userInfo.fistName}"></span>
+								<span th:utext="${userInfo.lastName}"></span>
+								</div>
+								<div class="emp-email"><i class="material-icons emp-info-ico">phone</i>  
+								<span th:utext="${userInfo.contactPhone}"></span> 
+								|  <i class="material-icons">email</i>  
+								<span th:utext="${userInfo.contactEmail}"></span></div>
+								<div class="profile-btns">
+								<a class="mdl-button mdl-js-button mdl-button--raised emp-info-btns emp-info-btn-green add-personal-info-btn"><i class="material-icons">edit</i> Edit Info</a>
+								
+									<a id="btn-upload-avatar" th:attr="data-user=${userInfo.getEmployeeId()}" class="mdl-button mdl-js-button mdl-button--raised emp-info-btns emp-info-btn-blue attach-avatar"><i class="material-icons">attach_file</i> Upload Profile Image</a>
+									<input type="file" id="upload_avatar" name="upload_avatar" class="hidden">
+								
+								<a class="mdl-button mdl-js-button mdl-button--raised emp-info-btns emp-info-btn-orange"><i class="material-icons">delete_forever</i> Delete Profile Image</a>
+								</div>					
+							</div>
+						</div>
+						
+						
+						<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+								  <div class="mdl-tabs__tab-bar">
+								      <a href="#basic_info" class="mdl-tabs__tab is-active">Basic Info</a>
+								      <a href="#education" class="mdl-tabs__tab">Education</a>
+								      <a href="#experience" class="mdl-tabs__tab">Experience</a>
+								      <a href="#certification" class="mdl-tabs__tab">Certification</a>
+								  </div>
+								
+								  <div class="mdl-tabs__panel is-active" id="basic_info">
+								  	<div class="mdl-grid">
+								  	    <div class="mdl-layout-spacer"></div>
+									    <div class="mdl-cell mdl-cell--8-col basic_info">
+									    
+									    		<table class="">
+											<tr>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Names</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.fistName}"></span>
+														<span th:utext="${userInfo.lastName}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Gender</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.mstatus}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Number</div>
+													<div class="emp-info-values">AOS-SE-001</div>
+												</td>
+											</tr>
+											<tr>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Nationality</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.nationality}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Marital Status</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.mstatus}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Telephone</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.contactPhone}"></span>
+													</div>
+												</td>
+											</tr>
+
+											<tr>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Birthday</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.dob}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td">
+													<div class="emp-info-title">Email</div>
+													<div class="emp-info-values">
+														<span th:utext="${userInfo.contactEmail}"></span>
+													</div>
+												</td>
+												<td class="emp-info-td"></td>
+											</tr>
+										</table>
+									    </div>
+									    <div class="mdl-layout-spacer"></div>
+								  	</div>
+								  </div>
+								  <div class="mdl-tabs__panel" id="education">
+										<!-- Education List-->
+												<ul class="demo-list-two mdl-list">
+												<li class="mdl-typography--text-center new-info-btn-li">
+													<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab new-info-btn-education">
+					  										<i class="material-icons">add</i>
+												    </button>
+												</li>
+											  
+												<li class="mdl-list__item mdl-list__item--two-line">
+													<span class="mdl-list__item-primary-content">
+														<i class="material-icons mdl-list__item-avatar">school</i>
+														<span>MIT (Massachusetts Institute of Technology)</span>
+														<span class="mdl-list__item-sub-title">Bachelor's degree /Software Engineering</span>
+													</span>
+													
+											   		<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon">
+															<i class="material-icons">more_vert</i>
+														</button>
+															<ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect hrms-dropdown-menu" for="demo-menu-lower-right">
+																<li class="mdl-menu__item">Edit</li>
+																<li class="mdl-menu__item">Delete</li>
+														    </ul>
+												  </li>
+												
+												<li class="mdl-list__item mdl-list__item--two-line">
+													<span class="mdl-list__item-primary-content">
+														<i class="material-icons mdl-list__item-avatar">school</i>
+														<span>CMU (Carnegie Mellon University)</span>
+														<span class="mdl-list__item-sub-title">Master's degree / Software Engineering </span>
+													</span>
+													<button id="demo-menu-lower-right1" class="mdl-button mdl-js-button mdl-button--icon">
+															<i class="material-icons">more_vert</i>
+													</button>
+													<ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect hrms-dropdown-menu is-visible"
+														for="demo-menu-lower-right1">
+															<li class="mdl-menu__item">Edit</li>
+															<li class="mdl-menu__item">Delete</li>
+													</ul>
+												</li>
+												
+											</ul>
+										<!-- End of Experience List -->
+								  </div>
+								  <div class="mdl-tabs__panel" id="experience">
+								    <!-- Education List-->
+											<ul class="demo-list-two mdl-list">
+										    	<li class="mdl-typography--text-center new-info-btn-li">
+													<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab new-info-btn-experience">
+					  										<i class="material-icons">add</i>
+												    </button>
+												</li>
+												
+
+												<li class="mdl-list__item mdl-list__item--two-line">
+													<span class="mdl-list__item-primary-content">
+														<i class="material-icons mdl-list__item-avatar">business_center</i>
+														<span>MTN Rwanda</span>
+														<span class="mdl-list__item-sub-title">Software Engineer / 4 years</span>
+													</span>
+													<button id="demo-menu-lower-right1" class="mdl-button mdl-js-button mdl-button--icon">
+														<i class="material-icons">more_vert</i>
+													</button>
+													<ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect hrms-dropdown-menu is-visible" for="demo-menu-lower-right1">
+														<li class="mdl-menu__item">Edit</li>
+														<li class="mdl-menu__item">Delete</li>
+													</ul>
+												</li>
+
+
+												
+											</ul>
+										<!-- End of Experience List -->
+								  </div>
+								  
+								  <div class="mdl-tabs__panel" id="certification">
+								    <!-- Certification List-->
+											<ul class="demo-list-two mdl-list">
+												<li class="mdl-typography--text-center new-info-btn-li">
+													<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab new-info-btn-certification">
+					  										<i class="material-icons">add</i>
+												    </button>
+												</li>
+											
+												<li class="mdl-list__item mdl-list__item--two-line">
+													<span class="mdl-list__item-primary-content">
+														<i class="material-icons mdl-list__item-avatar">description</i>
+														<span>CCNA</span>
+														<span class="mdl-list__item-sub-title">6 Months</span>
+													</span>
+													
+											   	   		<button id="demo-menu-lower-right4" class="mdl-button mdl-js-button mdl-button--icon">
+															<i class="material-icons">more_vert</i>
+														</button>
+
+															<ul class="mdl-menu mdl-menu--top-right mdl-js-menu mdl-js-ripple-effect hrms-dropdown-menu"
+																for="demo-menu-lower-right4">
+																<li class="mdl-menu__item">Edit</li>
+																<li class="mdl-menu__item">Delete</li>
+														   </ul>
+												</li>
+												
+											</ul>
+										<!-- End of Experience List -->
+								  </div>
+								</div>
+					</div>
+					<!-- END OF CONTENT -->
+			</div>
+		</div>
+		</main>
+		
+		<footer class="mdl-mini-footer">
+	<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	
+	<!-- MODAL OF PERSONAL INFO -->
+	<div class="hrms-modal hidden" id="new-personal-info-info">
+		<div class="hrms-modal-content hrms-modal-medium">
+			
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">Edit Personal Information</span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--6-col">
+						        <label for="first_name">First Name</label>
+								<input id="first_name" name="first_name" class="hrms-form-control" placeholder="First Name" type="text">
+								
+								<label for="last_name">Last Name</label>
+								<input id="last_name" name="last_name" class="hrms-form-control" placeholder="Last Name" type="text">
+								
+								<label for="birthday">Birthday</label>
+								<input id="birthday" name="birthday" class="hrms-form-control" type="date">
+								
+								<label for="last_name">Gender</label>
+								<select class="hrms-form-control">
+									<option value="M">Male</option>
+									<option value="F">Female</option>
+								</select>
+					</div>
+					
+					<div class="mdl-cell mdl-cell--6-col">
+								<label for="last_name">Marital Status</label>
+								<select class="hrms-form-control">
+									<option value="single">Single</option>
+									<option value="married">Married</option>
+								</select>
+						
+								<label for="email">Email</label>
+								<input id="email" name="email" class="hrms-form-control" placeholder="email" type="email">
+								
+								<label for="telephone">Telephone</label>
+								<input id="telephone" name="telephone" class="hrms-form-control" placeholder="telephone">
+					</div>
+					
+						<div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+						 	<a  class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green next_to_contract">Save <i class="material-icons">check</i></a>
+					   </div>	
+					
+				</div>
+			</div>
+	   </div>
+	</div>
+	<!-- END MODAL OF PERSONAL INFO -->
+	
+	<!-- MODAL OF NEW EDUCATION -->
+	<div class="hrms-modal hidden" id="new-educational-info">
+		<div class="hrms-modal-content hrms-modal-medium">
+			
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">Add an educational background </span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--6-col">
+						
+								<label for="school_name">School Name</label>
+								<input id="location" name="school_name" class="hrms-form-control" type="text">
+								
+								<label for="title">Level</label>
+								<select id="title" name="title" class="hrms-form-control">
+									<option value="Bachelor's">Bachelor's</option>
+									<option value="Masters">Masters</option>
+									<option value="PHD">PHD</option>
+								</select>
+								
+								<label for="from">From</label>
+								<input id="location" name="from" class="hrms-form-control" type="date">	
+					</div>
+					
+					<div class="mdl-cell mdl-cell--6-col">
+								<label for="major">Major</label>
+								<input id="location" name="Major" placeholder="Major" class="hrms-form-control" type="text">
+						
+								<label for="location">Location</label>
+								<input id="location" name="Major" placeholder="City/Country" class="hrms-form-control" type="text">
+								
+								<label for="to">To</label>
+								<input id="to" name="to" class="hrms-form-control" type="date">
+					</div>
+					
+						<div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+						 	<a  class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green next_to_contract">Save <i class="material-icons">check</i></a>
+					   </div>	
+					
+				</div>
+			</div>
+	   </div>
+	</div>
+	<!-- END MODAL OF NEW EDUCATION -->
+	
+	
+	<!-- MODAL OF NEW EXPERIENCE -->
+	<div class="hrms-modal hidden" id="new-experience-info">
+		<div class="hrms-modal-content hrms-modal-medium">
+			
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">Add an experience </span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+				<div class="mdl-grid">
+				        <div class="mdl-grid">
+					
+					<div class="mdl-cell mdl-cell--6-col">
+								<label>Company name<span class="required_asterisk">*</span></label>
+								<input id="company_name" name="company_name" placeholder="Company Name" class="hrms-form-control" type="text">
+								
+								<label>From<span class="required_asterisk">*</span></label>
+								<input id="upload_file" name="from" placeholder="From" class="hrms-form-control" type="date">
+					</div>
+					<div class="mdl-cell mdl-cell--6-col">
+								<label>Location<span class="required_asterisk">*</span></label>
+								<input id="company_location" name="company_location" placeholder="Location" class="hrms-form-control" type="text">
+								
+								<label>To<span class="required_asterisk">*</span></label>
+								<input id="upload_file" name="to" placeholder="To" class="hrms-form-control" type="date">
+					</div>
+					
+					<div class="mdl-cell mdl-cell--6-col">
+								<label>Position<span class="required_asterisk">*</span></label>
+								<input id="company_location" name="company_location" placeholder="Position" class="hrms-form-control" type="text">		
+					</div>
+					<div class="mdl-cell mdl-cell--6-col"></div>
+					<div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+						 	<a  class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green next_to_contract">Save <i class="material-icons">check</i></a>
+					</div>
+					
+				</div>
+				</div>
+				</div>
+			</div>
+	   </div>
+	
+	<!-- END MODAL OF NEW EXPERIENCE -->
+	
+	<!-- MODAL OF NEW CERTIFICATE -->
+	<div class="hrms-modal hidden" id="new-certificate-info">
+		<div class="hrms-modal-content hrms-modal-medium">
+			
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">Add a certificate</span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+				<div class="mdl-grid">
+					
+					<div class="mdl-cell mdl-cell--6-col">
+								<label>Certificate Name<span class="required_asterisk">*</span></label>
+								<input id="certificate_name" name="certificate_name" placeholder="Certificate Name" class="hrms-form-control" type="text">
+								
+								<label>From<span class="required_asterisk">*</span></label>
+								<input id="upload_file" name="from" placeholder="From" class="hrms-form-control" type="date">
+					</div>
+					<div class="mdl-cell mdl-cell--6-col">
+								<label>Attach your certificate<span class="required_asterisk">*</span></label>
+								<input id="certificate_name" name="certificate_file" class="hrms-form-control" type="file">
+								
+								<label>To<span class="required_asterisk">*</span></label>
+								<input id="upload_file" name="to" placeholder="To" class="hrms-form-control" type="date">
+					</div>
+					<div class="mdl-cell mdl-cell--12-col">
+						<div class="mdl-cell mdl-cell--12-col mdl-typography--text-right">
+						 	<a  class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round border-green next_to_contract">Save <i class="material-icons">check</i></a>
+					   </div>	
+					</div>
+				</div>
+	   </div>
+	</div>
+	</div>
+	<!-- END MODAL OF NEW CERTIFICATE -->
+	
+	<!-- MODAL OF NEW AVATAR-->
+	<div class="hrms-modal hidden" id="new-avatar-editor">
+		<div class="hrms-modal-content hrms-modal-medium">
+			<div class="hrms-modal-header">  
+				<span class="hrms-modal-title">New Avatar</span>
+				<span class="hrms-modal-close">&times;</span>
+			</div>
+			<div class="hrms-modal-body">
+					<section id="sectionDragAndDrop" class="profile_crop">
+					    <div class="drop" id="drop">
+					        <p>Drag & drop or click here to upload an image.</p>
+					    </div>
+					    <input class="file-upload hidden" id="fileUpload" type="file">
+					</section>
+					<!-- Resize image -->
+					<section class="hidden profile_crop" id="sectionResize">
+					    <div class="image-resize" id="imageResize"></div>
+					  <button class="btn" id="crop"><span class='fa fa-crop'></span> Crop</button>
+					</section>
+					<!-- Insert thumbnail -->
+					<section class="hidden profile_crop" id="sectionThumbnail">
+					    <div class="thumbnail" id="thumbnail"></div>
+					</section>
+			 </div>
+	  </div>
+	</div>
+	<!-- END MODAL OF AVATAR -->
+	<script type="text/javascript">
+	/* $( window ).ready(function(){
+		$("#upload_avatar").change('click', function(e){
+			console.log($(this).val());
+		});
+	}); */
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

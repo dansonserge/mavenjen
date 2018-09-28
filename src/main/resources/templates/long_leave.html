@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+.leave-radio2 {
+	text-decoration: none;
+	margin-left: 10px;
+}
+.leave-radio1 {
+	text-decoration: none;
+}
+</style>
+</head>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+
+			<div class="mdl-grid">
+				<!-- START OF SIDEBAR -->
+				<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+				<!-- END OF SIDEBAR -->
+				<div class="mdl-cell mdl-cell--9-col ">
+
+					<!-- START OF CONTENT -->
+ 					<div class="hrms-main-content hrms-box mdl-card mdl-shadow--8dp">
+						<div class="hrmsLeave-box-title">
+							<p>Leave Application form</p>
+						</div>
+						
+						<div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+							<div class=" leave_tab">
+									<a href="#personal_details"  class="mdl-tabs__tab personal_details is-active">1. Long Leave</a>
+									<a href="#contract_details" class="mdl-tabs__tab contract_details">2. Short Leave</a>
+							</div>
+							<div class="mdl-tabs__panel hrms-new-emp-tab is-active" id="personal_details">
+								<!-- START LONG LEAVE-->
+								<form class="form" id="longLeaveForm" enctype="multipart/form-data" method="POST">
+								<input type="hidden" name="empId" id="empId" th:attr="value=${Userprofile.getEmployeeId()}" hidden="" />
+								<div class="mdl-grid">
+								
+								<div class="mdl-cell mdl-cell--6-col">
+
+												<label for="fname">Requester Name</label>
+												<input style="background-color: #c0c0c0" name="fname" id="fname" class="hrms-form-control" 
+												type="text" th:value="${Userprofile.getFistName()} " readonly="readonly" />					               
+						               		<label for="fname">Date to go : <span class="required_asterisk">*</span></label>
+												<input id="dateToGo" name="dateToGo" class="hrms-form-control" type="date"  />
+
+												<label for="mname">Back up person : <span class="required_asterisk">*</span></label>
+												<input  class="hrms-form-control" id="bacupP" name="bacupP" type="text" placeholder="Enter the person to stay" required="required" />
+											
+											</div>
+										<div class="mdl-cell mdl-cell--6-col ">
+									<label>Date of request: </label>
+									<input style="background-color: #c0c0c0" class="hrms-form-control" name="requestDate" type="text" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" readonly="readonly" />
+									<input class="hrms-form-control" th:value="${p.getPeriodId()}" name="period" id="period" type="hidden"  readonly="readonly" />
+									
+									<label>Returning date :  <span class="required_asterisk">*</span></label>
+										<input class="hrms-form-control" name="returnDate"  id="returnDate" type="date"  />
+										<label for="leaveCateg">Leave Category :  <span class="required_asterisk">*</span></label>
+											<select  id="leaveCateg" name="leaveCateg" class="hrms-form-control">
+													<span th:each="c:${leaveCategList}">
+											<option th:attr="value=${c.getLeaveCategoryId()}"><span
+												th:utext="${c.getCategoryName()}"></span></option>
+												</span>
+												</select>
+										</div>
+									  </div>
+									<div class="mdl-cell mdl-cell--11-col">
+									<label for="comment">Comment : (Optional)</label><br/>
+									<textarea  class="form-control" name="comment" id="comment" rows="6" placeholder="Enter ..." style="width: 1000px; height: 200px;"></textarea>
+					       				<script type="text/javascript">
+									        CKEDITOR.replace( 'comment')
+									      </script>
+									      <div class="mdl-grid">
+											    <div class="mdl-spinner mdl-cell mdl-cell--12-col mdl-typography--text-right ">
+											    <button type="sumbit" style="color:#2980B9;" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green">
+											     Save <i class="material-icons">save</i></button>
+											    </div>						
+											</div>
+									      <div style="padding-bottom: 35px;"></div>
+									      </div>								
+								</form>
+							</div>
+							<div class="mdl-tabs__panel hrms-new-emp-tab" id="contract_details">
+							<!-- START SHORT LEAVE-->
+							<form class="form" id="ShortLeaveForm" enctype="multipart/form-data" method="POST">
+								<div class="mdl-grid">
+										<div class="mdl-cell mdl-cell--6-col">
+
+												<label for="fname">Requester Name</label>
+												<input style="background-color: #c0c0c0" id="fname" class="hrms-form-control" 
+												type="text" th:value="${Userprofile.getFistName()} " readonly="readonly" />
+										<input type="hidden" name="empId" id="empId" th:attr="value=${Userprofile.getEmployeeId()}" hidden="" />
+										<input th:value="${p.getPeriodId()}" name="period" id="period" type="hidden" />
+						               <label for="fname">Date to go : <span class="required_asterisk">*</span></label>
+										 <input id="dateToGo" name="dateToGo" class="hrms-form-control" type="date" required="required" />
+						               
+						               <label for="fname">Hour to go :</label>
+												<input id="hourToGo" name="hourToGo" class="hrms-form-control" type="time" required="required" />
+												<div id="error" ></div>
+												<label for="bacupP">Back up person :</label>
+												<input id="bacupP" name="bacupP" class="hrms-form-control" type="text" placeholder="Enter the person to stay" required="required" />
+												<div id="error" ></div>
+											</div>
+											
+										<div class="mdl-cell mdl-cell--6-col ">
+									<label>Date of request:</label>
+									<input style="background-color: #c0c0c0" class="hrms-form-control" type="text" th:value="${#dates.format(#dates.createNow(), 'dd MMM yyyy HH:mm')}" readonly="readonly" />
+									<label>Returning date : </label>
+										<input style="background-color: #c0c0c0" class="hrms-form-control" name="returnDate"  id="returnDate" type="date" required="required" readonly="readonly"/>
+									<label>Number of hours taken:</label>
+										<input id="hoursTaken" name="hoursTaken" class="hrms-form-control" type="number" required="required" />
+										<div id="error" ></div>
+										</div>
+										<div class="mdl-cell mdl-cell--11-col">
+									<label for="reason">Reason :</label><br/>
+									<textarea  class="form-control" id="reason" name="reason"  rows="6" placeholder="Enter ..." required="required" style="width: 1000px; height: 200px;"></textarea>
+					       				<script type="text/javascript">
+									        CKEDITOR.replace( 'reason')
+									      </script>
+									      <div class="mdl-grid">
+											    
+											    <div class="mdl-spinner mdl-cell mdl-cell--12-col mdl-typography--text-right ">
+											    <button id="saveLeave" type="sumbit" style="color:#2980B9;" class="mdl-button mdl-js-button mdl-button--raised hrms-btn-round mdl-typography--text-right border-green">
+											     Submit <i class="material-icons">save</i></button>
+											    </div>					
+											</div>
+											<div style="padding-bottom: 35px;"></div>
+									      </div>
+										 </div>
+										 </form>
+							      </div>
+							 </div>
+					    </div>
+					<!-- END OF CONTENT -->
+				</div>
+				</main>
+				<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<script type="text/javascript">
+		$( document ).ready(function(){
+			
+			//submit form
+			$("#longLeaveForm").submit(function(event){
+				event.preventDefault();
+				ajaxEmpPost();
+			});
+			
+			function ajaxEmpPost(){
+				
+				//get Form data
+				var form = $("#longLeaveForm")[0];
+				var data = new FormData(form);
+				//add controlls to disable the button here
+				//$("#btn-submit").prop("disabled", true);
+				//show spiner
+				$(".mdl-spinner").css({"display":"block"});
+				$.ajax({
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: "/api/Leave/addLong",
+					data:data,
+					// prevent jQuery from automatically transforming the data into a query string
+			        processData: false,
+			        contentType: false,
+			        cache: false,
+			        timeout: 1000000,
+			        success: function(data, textStatus, jqXHR){
+			        	console.log("SUCCESS:",data);
+			        	//$("#btn-submit").prop("disabled", false);
+			        	$("#longLeaveForm")[0].reset();
+			        	//hide spinner
+			        	$(".mdl-spinner").css({"display":"none"});
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) {
+			        	console.log("ERROR:",jqXHR.responseText)
+			        	//$("#btn-submit").prop("disabled", false);
+			        	//hide spinner
+			        	$(".mdl-spinner").css({"display":"none"});
+			        }
+				});
+			}
+		});
+	</script>
+	
+	<script type="text/javascript">
+		$( document ).ready(function(){
+			
+			//submit form
+			$("#ShortLeaveForm").submit(function(event){
+				event.preventDefault();
+				ajaxEmpPost();
+			});
+			
+			function ajaxEmpPost(){
+				
+				//get Form data
+				var form = $("#ShortLeaveForm")[0];
+				var data = new FormData(form);
+				//add controlls to disable the button here
+				//$("#btn-submit").prop("disabled", true);
+				//show spiner
+				$(".mdl-spinner").css({"display":"block"});
+				$.ajax({
+					type: "POST",
+					enctype: 'multipart/form-data',
+					url: "/api/Leave/addShort",
+					data:data,
+					// prevent jQuery from automatically transforming the data into a query string
+			        processData: false,
+			        contentType: false,
+			        cache: false,
+			        timeout: 1000000,
+			        success: function(data, textStatus, jqXHR){
+			        	console.log("SUCCESS:",data);
+			        	alert("Application sent successfully")
+			        	// $('#sentMessage').html('<p>Application sent successfully.</p>');
+			        	//$("#btn-submit").prop("disabled", false);
+			        	$("#ShortLeaveForm")[0].reset();
+			        	//hide spinner
+			        	$(".mdl-spinner").css({"display":"none"});
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) {
+			        	console.log("ERROR:",jqXHR.responseText)
+			        	//$("#btn-submit").prop("disabled", false);
+			        	//hide spinner
+			        	$(".mdl-spinner").css({"display":"none"});
+			        }
+				});
+			}
+		});
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>

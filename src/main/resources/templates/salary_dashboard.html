@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block>
+
+<!-- SALARY ADVANCE STATUS -->
+<script type="text/javascript">
+	google.charts.load('current', {
+		'packages' : [ 'bar' ]
+	});
+	google.charts.setOnLoadCallback(drawChart);
+
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+				[ 'Year', 'Requested Amount', 'Paid Amount',
+						'Remaining Amount', ],
+				[ '2017', 7000000, 2000000, 3000000 ],
+				[ '2018', 1000000, 500000, 500000 ],
+
+		]);
+
+		var options = {
+			chart : {
+
+				legend : {
+					position : 'none'
+				},
+			}
+		};
+		var chart = new google.charts.Bar(document
+				.getElementById('salary_status'));
+
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+	}
+</script>
+
+<!-- SALARY ADVANCE REQUESTED BY DEPARTMENTS -->
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['department', 'request per year'],
+          ['Software Eng.',     7],
+          ['Sales & Marketing',      8],
+          ['Finance',  7],
+          ['Human resources', 15,],
+         
+        ]);
+
+    
+
+        var chart = new google.visualization.PieChart(document.getElementById('SalaryByDpt'));
+
+        chart.draw(data);
+      }
+    </script>
+    
+    <!-- AMOUNT BY DEPARTMENT -->
+<script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable([
+          ['department', 'request per year'],
+          ['Software Eng.',     7],
+          ['Sales & Marketing',      8],
+          ['Finance',  7],
+          ['Human resources', 15,],
+         
+        ]);
+ var chart = new google.visualization.PieChart(document.getElementById('RequestByDpt'));
+
+        chart.draw(data);
+      }
+    </script>
+<title>Salary Advance Dashboard</title>
+</head>
+<style>
+.no-js #loader {
+	display: none;
+}
+
+.js #loader {
+	display: block;
+	position: absolute;
+	left: 100px;
+	top: 0;
+}
+
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block>
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+		<div class="mdl-grid">
+			<!-- START OF SIDEBAR -->
+			<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+			<!-- END OF SIDEBAR -->
+			<div class="mdl-cell mdl-cell--9-col ">
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--7-col mdl-typography--text-left">
+						<div class="hrms-main-year">
+							<p>
+								Year : <select id="designation" name="designation"
+									class="hrms-form-year">
+									<option value="2018">2018</option>
+									<option value="2017">2017</option>
+									<option value="2016">2016</option>
+								</select>
+							</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="mdl-grid">
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Salary
+									advance status (in Rwf)</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+								<div id="salary_status"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Salary
+									advance requested by Department</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+								<div id="SalaryByDpt" style="width: 330px; padding-left:0px;"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+					<div class="mdl-cell mdl-cell--4-col">
+						<div class="demo-card-square  mdl-card mdl-shadow--2dp  ">
+							<div class="mdl-card__title salary_dashboard_card">
+								<label class="mdl-card__title-text salary_dashboard_card_text">Amount
+									requested by Departments</label>
+							</div>
+							<div class="mdl-card__supporting-text">
+								<div id="RequestByDpt"style="width: 330px; padding:0px;"></div>
+
+							</div>
+
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+
+				<div class="mdl-grid">
+
+					<table
+						class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave salary_dashboard_table "
+						style="width: 100%">
+						<thead>
+							<tr>
+
+								<th>Name</th>
+								<th>Amount Requested</th>
+								<th>Applied date</th>
+								<th>Payment period/month</th>
+								<th>Approval status</th>
+								<th>Payment status</th>
+
+							</tr>
+						</thead>
+
+						<tbody>
+
+							<tr>
+								<td>Claude Kabayiza</td>
+								<td>600,000</td>
+								<td>17/5/2018</td>
+								<td>3</td>
+								<td>Approved</td>
+								<td>Paid</td>
+							</tr>
+							<tr>
+								<td>Ariane Mugisha</td>
+								<td>500,000</td>
+								<td>17/5/2018</td>
+								<td>1</td>
+								<td>Approved</td>
+								<td>in process</td>
+							</tr>
+
+							<tr>
+								<td>Serge Danson</td>
+								<td>1,000,000</td>
+								<td>17/5/2018</td>
+								<td>3</td>
+								<td>Approved</td>
+								<td>Paid</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<!-- END OF CONTENT -->
+		</div>
+
+		</main>
+		<footer class="mdl-mini-footer">
+			<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+		</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+
+
+</body>
+<div class="se-pre-con"></div>
+</html>

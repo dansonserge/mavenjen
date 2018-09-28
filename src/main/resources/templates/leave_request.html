@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<th:block th:include="fragments/dashboard/headerInc :: headerInc"></th:block> 
+</head>
+<style>
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
+	background: url(images/loader/Preloader_3.gif) center no-repeat #fff;
+}
+</style>
+<body>
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<!-- START HEADER FRAGMENT -->
+		<th:block th:include="fragments/dashboard/header :: header"></th:block> 
+		<!-- END HEADER FRAGMENT -->
+		<main class="mdl-layout__content hrms-main">
+			<div class="mdl-grid">
+					  <!-- START OF SIDEBAR -->
+						<th:block th:include="fragments/dashboard/sidebar :: sidebar"></th:block>
+					<!-- END OF SIDEBAR -->
+				<div class="mdl-cell mdl-cell--9-col ">
+					<div class="mdl-grid">
+							<div class="mdl-cell mdl-cell--6-col mdl-typography--text-left">
+									<div class="hrms-main-year">
+										<p>Year : <select id="designation" name="designation" class="hrms-form-year">
+													<option value="2018">2018</option>
+													<option value="2017">2017</option>
+													<option value="2016">2016</option>
+												</select></p>
+											</div>
+									</div>
+						<div class="mdl-cell mdl-cell--6-col mdl-typography--text-right">
+							<a class="hrms-btn-round mdl-button mdl-js-button  mdl-js-ripple-effect" href="/long_leave">
+								<i class="material-icons">add</i> Request Leave
+							</a>
+						</div>
+					</div>
+					<div class="mdl-grid">
+					<div class=" mdl-cell mdl-cell--12-col  hrms-box mdl-card mdl-shadow--8dp">
+						<div class="hrmsLeave-box-title"><p>List of Leaves</p></div>
+						<div id="main">
+						<div class="ProgressRemaining">Remaining Days : </div>
+							<!-- Simple MDL Progress Bar -->
+						<div id="p1" class="mdl-progress mdl-js-progress"></div>
+						<div class="remainingDays">9/29 </div></div>
+							<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp mdl-table-leave">
+								<thead>
+									<tr>
+										<th class="mdl-data-table__cell--non-numeric">No.</th>
+										<th>Start date</th>
+										<th>Time taken</th>
+										<th>Remaining time</th>
+										<th>Leave type</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+							
+								<tbody>
+									<tr style="cursor: pointer;">
+										<td class="mdl-data-table__cell--non-numeric">1</td>
+										<td>05/04/2018</td>
+										<td>3 days and 5 hours</td>
+										<td>Software engineer</td>
+										<td>1 Year</td>
+										<td style="color: #2980B9">Approved</td>
+									</tr>
+
+									<tr style="cursor: pointer;">
+										<td class="mdl-data-table__cell--non-numeric">1</td>
+										<td>05/04/2018</td>
+										<td>3 days and 5 hours</td>
+										<td>Software engineer</td>
+										<td>1 Year</td>
+										<td style="color: #2980B9">Approved</td>
+									</tr>
+									<tr style="cursor: pointer;">
+										<td class="mdl-data-table__cell--non-numeric">1</td>
+										<td>05/04/2018</td>
+										<td>3 days and 5 hours</td>
+										<td>Software engineer</td>
+										<td>1 Year</td>
+										<td style="color: #2980B9">Approved</td>
+									</tr>
+								</tbody>
+							</table>
+					</div>
+					</div>
+					<!-- END OF CONTENT -->
+				</div>
+			</div>
+		</main>
+		<footer class="mdl-mini-footer">
+	<th:block th:include="fragments/dashboard/footer :: footer"></th:block>
+	</footer>
+	</div>
+	<th:block th:include="fragments/dashboard/footerInc :: footerInc"></th:block>
+	<script>
+			//LEAVE PROGRESS BAR
+			document.querySelector('#p1').addEventListener('mdl-componentupgraded', function () {
+				this.MaterialProgress.setProgress(44);
+			});
+	</script>
+</body>
+<div class="se-pre-con"></div>
+</html>
